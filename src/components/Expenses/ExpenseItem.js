@@ -1,15 +1,39 @@
-import './ExpenseItem.css'
+import React, {useState} from 'react';
+
 import ExpenseDate from './ExpenseDate';
-import ExpenseDetails from './ExpenseDetails';
+import Card from './Card';
+import './ExpenseItem.css';
 
 function ExpenseItem(props) {
+  const [title,setTitle] = useState(props.title);
+  const [amount,setAmount] = useState(props.amount);
+
+  const titleHandler=()=>{
+    setTitle('Updated!'+title)
+    console.log(title)
+  }
+
+  const deleteHandler=e=>{
+    e.target.parentElement.remove()
+  }
+
+  const amountHandler=()=>{
+    setAmount(amount+100);
+
+  }
+
+
   return (
-    <div className='expense-item'>
-        
-      <ExpenseDate date = {props.expense.date}/>
-      <ExpenseDetails title={props.expense.title} LocationOfExpenditure={props.expense.LocationOfExpenditure} amount={props.expense.amount} />
-      
-    </div>
+    <Card className='expense-item'>
+      <ExpenseDate date={props.date} />
+      <div className='expense-item__description'>
+        <h2>{title}</h2>
+        <div className='expense-item__price'>${amount}</div>
+      </div>
+      <button onClick={deleteHandler}>Delete</button>
+      <button onClick={titleHandler}>Title</button>
+      <button onClick={amountHandler}>Amount</button>
+    </Card>
   );
 }
 
