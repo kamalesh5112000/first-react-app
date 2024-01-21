@@ -31,7 +31,9 @@ const App=()=> {
 
   const addExpenseHandler=(expData)=>{
     console.log("In App.js ", expData)
-    setExpenses((prevExpenses) => [...prevExpenses, expData]);
+    setExpenses((prevExpenses) => {
+      return ([expData,...prevExpenses])
+    });
 
   }
 
