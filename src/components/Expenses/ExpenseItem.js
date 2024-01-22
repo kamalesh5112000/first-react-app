@@ -18,7 +18,7 @@ function ExpenseItem(props) {
   }
 
   const amountHandler=()=>{
-    setAmount(amount+100);
+    setAmount(Number(amount)+100);
 
   }
 
